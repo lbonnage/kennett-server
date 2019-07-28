@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 	<head>
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    	<script src="scripts/dropdownScript.js"></script>
     	<meta charset="utf-8">
       	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   		<title>On-Demand Minecraft Server for Kennett Group</title>
@@ -9,9 +10,14 @@
     <body>
     	<h1>On-Demand Minecraft Server for Kennett Group</h1>
     	<form action="{{ url_for('init_server') }}", method="POST">
+    		<select name="servers" type="text" id="serverDropdown">
+    			<option value="rory">Rory's Server</option>
+    			<option value="rad">Roguelike Adventures and Dungeons</option>
+    		</servers>
     		<input type="text" name="password" placeholder="Password">
     		<input type="submit" value="Start Server">
     	</form>
+  		<div id="serverText">Select a server in the dropdown to see details here</div>
     	<h2>{{ ipMessage }}</h2>
     </body>
 </html>
