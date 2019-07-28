@@ -83,7 +83,7 @@ def start_server(ec2_client):
 		print(str(response))
 		print('\n')
 
-		response = client.describe_instances(InstanceIds = instance_ids)
+		response = ec2_client.describe_instances(InstanceIds = instance_ids)
 		reservation = response['Reservations'][0]
 		instances = reservation['Instances']
 		instance = instances[0]
