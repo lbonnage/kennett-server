@@ -45,15 +45,15 @@ def init_server():
 	if inputted_password == Config.SERVER_PASSWORD:
 
 		#Instantiate the EC2 Server here
-        client = boto3.client(
-            'ec2',
-            aws_access_key_id=Config.ACCESS_KEY,
-            aws_secret_access_key=Config.SECRET_KEY,
-            region_name=Config.EC2_REGION
-        )
+		client = boto3.client(
+			'ec2',
+			aws_access_key_id=Config.ACCESS_KEY,
+			aws_secret_access_key=Config.SECRET_KEY,
+			region_name=Config.EC2_REGION
+		)		
 
-        # ipaddress = manageServer(client)
+		# ipaddress = manageServer(client)
 
-    ipaddress = 'fake'
-    print("Successfully started EC2 server with IP: " _+ ipaddress)
-    return render_template('index.html', ipMessage=ipaddress)
+	ipaddress = 'fake'
+	print("Successfully started EC2 server with IP: " _+ ipaddress)
+	return render_template('index.html', ipMessage=ipaddress)
