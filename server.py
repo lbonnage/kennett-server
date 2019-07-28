@@ -55,5 +55,5 @@ def init_server():
 		# ipaddress = manageServer(client)
 
 	ipaddress = 'fake'
-	print("Successfully started EC2 server with IP: " _+ ipaddress)
+	print("Successfully started EC2 server with IP: " + ipaddress)
 	return render_template('index.html', ipMessage=ipaddress)
