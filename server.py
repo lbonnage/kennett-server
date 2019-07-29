@@ -33,7 +33,7 @@ def init_server_commands(instance_ip, server):
 		jar_path = Config.SERVER_JAR_PATHS[int(server)]
 
 		# Execute a Unix command via SSH after connecting to the instance
-		stdin, stdout, stderr = ssh_client.exec_command("screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'")
+		stdin, stdout, stderr = ssh_client.exec_command("screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar " + server_path + " nogui'")
 		print("[Server] Command executed")
 
 		# Close the SSH connection once the job is done
@@ -168,7 +168,7 @@ def init_server():
 	message = '[Server] Password Incorrect'
 	ip_address = 'Password incorrect'
 
-	if inputted_server == '-1':
+	if inputted_server == '0':
 		message = '[Server] Please choose a valid server'
 		ip_address = 'Please choose a valid server'
 
