@@ -161,7 +161,7 @@ def init_server():
 	return_data = {}
 
 	message = '[Server] Password Incorrect'
-	ip_address = ''
+	ip_address = 'Password incorrect'
 
 	if inputted_password == Config.SERVER_PASSWORD:
 
