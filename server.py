@@ -99,7 +99,7 @@ def start_server(ec2_client, server):
 		print('\n')
 
 	ip_address = instance['PublicIpAddress']
-	return_string = 'Server is starting, this may take a minutes. \nIP Address: ' + ip_address
+	return_string = 'Server is starting, this may take a minute. IP Address: ' + ip_address
 
 	p = Process(target=server_wait_ok, args=(ip_address, ec2_client, server))
 	p.start()
