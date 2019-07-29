@@ -43,8 +43,9 @@ def init_server_commands(instance_ip, server):
 		# Close the SSH connection once the job is done
 		ssh_client.close()
 
-	except:
-		print('[Server] An error has occurred while attempting to run commands through SSH')
+	except Exception as e:
+		print('[Server] An error has occurred while attempting to run commands through SSH:')
+		print(e)
 
 
 ##
