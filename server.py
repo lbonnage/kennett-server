@@ -22,12 +22,15 @@ ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ##
 # SSH into the server and execute the command to boot the Minecraft server
 ##
-def init_server_commands(instance_ip):
+def init_server_commands(instance_ip, server):
 
 	# Connect via SSH to the instance
 	try:
 		# Use 'ubuntu' as username and 'instance_ip' as the public IPv4 of the EC2 instance
 		ssh_client.connect(hostname=instance_ip, username='ubuntu', pkey=key)
+
+		# Create the correct path to the server jar using the selected server number
+		jar_path = Config.SERVER_JAR_PATHS[int(server)]
 
 		# Execute a Unix command via SSH after connecting to the instance
 		stdin, stdout, stderr = ssh_client.exec_command("screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'")
@@ -42,8 +45,9 @@ def init_server_commands(instance_ip):
 
 ##
 # Waits for the server to reach a valid state so commands can be run
+# Server is the string number of the dropdown choice representing the server that you want to launch.
 ##
-def server_wait_ok(instance_ip, ec2_client):
+def server_wait_ok(instance_ip, ec2_client, server):
 
 	checks_passed = False
 	status = 'initializing'
@@ -59,15 +63,16 @@ def server_wait_ok(instance_ip, ec2_client):
 		time.sleep(5)
 
 	if checks_passed:
-		init_server_commands(instance_ip)
+		init_server_commands(instance_ip, server)
 	else:
 		print('[Server] An error has occurred booting the server')
 
 
 ##
 # Starts the desired EC2 instance from the inputted client
+# Server is the string number of the dropdown choice representing the server that you want to launch.
 ##
-def start_server(ec2_client):
+def start_server(ec2_client, server):
 
 	# Get the proper variables to attempt to start the desired EC2 instance and launch the Minecraft server
 	return_string = 'ERROR'
@@ -96,7 +101,7 @@ def start_server(ec2_client):
 	ip_address = instance['PublicIpAddress']
 	return_string = 'Server is starting, this may take a minutes. \nIP Address: ' + ip_address
 
-	p = Process(target=server_wait_ok, args=(ip_address, ec2_client))
+	p = Process(target=server_wait_ok, args=(ip_address, ec2_client, server))
 	p.start()
 	return return_string
 
@@ -127,7 +132,7 @@ def manage_server(ec2_client, server):
 
 		# The instance isn't running
 		if (state_name == 'stopped') or (state_name == 'shutting down'):
-			return_string = start_server(ec2_client)
+			return_string = start_server(ec2_client, server)
 		elif state_name == 'running':
 			return_string = 'IP: ' + instance['PublicIpAddress']
 		else:
@@ -163,7 +168,11 @@ def init_server():
 	message = '[Server] Password Incorrect'
 	ip_address = 'Password incorrect'
 
-	if inputted_password == Config.SERVER_PASSWORD:
+	if inputted_server == '-1':
+		message = '[Server] Please choose a valid server'
+		ip_address = 'Please choose a valid server'
+
+	elif inputted_password == Config.SERVER_PASSWORD:
 
 		# Instantiate the EC2 Server here or return the IP if it is already running
 		ec2_client = boto3.client(
@@ -173,7 +182,7 @@ def init_server():
 			region_name=Config.EC2_REGION
 		)		
 
-		ip_address = manage_server(ec2_client)
+		ip_address = manage_server(ec2_client, inputted_server)
 		message = '[Server] Successfully started EC2 server with IP: ' + ip_address
 
 	print(message)

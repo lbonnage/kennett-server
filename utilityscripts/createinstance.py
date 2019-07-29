@@ -47,4 +47,4 @@ def create_spot():
 
 	print ("[CreateSpot] Spot EC2 Instance created.  Id: " + response[0].id)
 
-# create_on_demand()
+create_on_demand()
