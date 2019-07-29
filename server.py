@@ -60,8 +60,13 @@ def server_wait_ok(instance_ip, ec2_client, server):
 
 	while (not checks_passed) and (status == 'initializing'):
 		status_check_response = ec2_client.describe_instance_status(InstanceIds = instance_ids)
+		instances_statuses = status_check_response['InstanceStatuses']
+		instance_status = instances_statuses[0]
+		instance_status = instance_status['InstanceStatus']
 
-		status = status_check_response['InstanceStatuses'][0]['InstanceStatus']['Status']
+		status = instances_status['Status']
+
+		print('[Server] Status: ' + status)
 
 		checks_passed = status == 'ok'
 
