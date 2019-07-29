@@ -31,10 +31,14 @@ def init_server_commands(instance_ip, server):
 
 		# Create the correct path to the server jar using the selected server number
 		jar_path = Config.SERVER_JAR_PATHS[int(server)]
+		print('[Server] About to execute command with server jar_path: ' + jar_path)
 
 		# Execute a Unix command via SSH after connecting to the instance
-		stdin, stdout, stderr = ssh_client.exec_command("screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar " + server_path + " nogui'")
+		stdin, stdout, stderr = ssh_client.exec_command("screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar " + server_path + "nogui'")
 		print("[Server] Command executed")
+		print('[Server] stdin: ' + stdin)
+		print('[Server] stdout: ' + stdout)
+		print('[Server] stderr: ' + stderr)
 
 		# Close the SSH connection once the job is done
 		ssh_client.close()
