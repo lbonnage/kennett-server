@@ -2,7 +2,7 @@ $(function () {
     $("#serverDropdown").on("change", function () {
         switch ($(this).val()) {
         	case "0":
-                $("#serverText").html("Select an option to see server details");
+                $("#serverText").html("Select a server in the dropdown to see details here.");
                 break;
             case "1":
             	$("#serverText").html(

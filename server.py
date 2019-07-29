@@ -103,8 +103,9 @@ def start_server(ec2_client):
 
 ##
 # If the EC2 server is not running, starts the server and returns the IP address.
+# Server input is a string representing the desired server to launch if there is none currently running.
 ##
-def manage_server(ec2_client):
+def manage_server(ec2_client, server):
 	return_string = 'ERROR'
 
 	# Find the details of our specific EC2 instance within the EC2 client
@@ -149,10 +150,13 @@ def load_index():
 # If the password is correct and the server is running, returns the IP address.
 # If the password is incorrect, returns a fail message to the browser.
 ##
-@app.route('/initserver', methods=['POST'])
+@app.route('/init_server', methods=['POST'])
 def init_server():
 
 	inputted_password = request.form['password']
+	inputted_server = request.form['server']
+
+	print("Server: " + inputted_server)
 
 	return_data = {}
 
