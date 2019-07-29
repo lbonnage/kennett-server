@@ -11,9 +11,10 @@
     	<h1>On-Demand Minecraft Server for Kennett Group</h1>
     	<form action="{{ url_for('init_server') }}", method="POST">
     		<select name="server" type="text" id="serverDropdown">
+    			<option value="0">-select server-</option>
     			<option value="1">Rory's Server</option>
     			<option value="2">Roguelike Adventures and Dungeons</option>
-    		</servers>
+    		</select>
     		<input type="text" name="password" placeholder="Password">
     		<input type="submit" value="Start Server">
     	</form>
