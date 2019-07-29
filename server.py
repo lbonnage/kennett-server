@@ -160,7 +160,8 @@ def init_server():
 
 	return_data = {}
 
-	message = 'Password Incorrect'
+	message = '[Server] Password Incorrect'
+	ip_address = ''
 
 	if inputted_password == Config.SERVER_PASSWORD:
 
@@ -173,6 +174,7 @@ def init_server():
 		)		
 
 		ip_address = manage_server(ec2_client)
+		message = '[Server] Successfully started EC2 server with IP: ' + ip_address
 
-	print("[Server] Successfully started EC2 server with IP: " + ip_address)
+	print(message)
 	return render_template('index.html', ipMessage=ip_address)
