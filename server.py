@@ -64,7 +64,7 @@ def server_wait_ok(instance_ip, ec2_client, server):
 		instance_status = instances_statuses[0]
 		instance_status = instance_status['InstanceStatus']
 
-		status = instances_status['Status']
+		status = instance_status['Status']
 
 		print('[Server] Status: ' + status)
 
