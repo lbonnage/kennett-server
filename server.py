@@ -37,7 +37,7 @@ def init_server_commands(instance_ip, server):
 
 		cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
 
-		stdin, stdout, stderr = ssh_client.exec_command('cd jar_path')
+		stdin, stdout, stderr = ssh_client.exec_command('cd ' + jar_path)
 		stdin, stdout, stderr = ssh_client.exec_command(cmd)
 		stdin, stdout, stderr = ssh_client.exec_command('cd ../..')
 
