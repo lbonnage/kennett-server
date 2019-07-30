@@ -37,7 +37,7 @@ def init_server_commands(instance_ip, server):
 
 		server_start_cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
 
-		cmd = 'cd ' + jar_path + '; ' + server_start_cmd
+		cmd = 'cd ' + jar_path + '&& ' + server_start_cmd
 
 		print ('[Server] cmd: ' + cmd)
 
