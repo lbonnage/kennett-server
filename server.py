@@ -35,7 +35,7 @@ def init_server_commands(instance_ip, server):
 
 		# Execute a Unix command via SSH after connecting to the instance
 
-		cmd = "cd " + jar_path + "; screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar " + server_path + "nogui' ; cd ../.."
+		cmd = "cd " + jar_path + "; screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui' ; cd ../.."
 		print('[Server] Executing cmd through SSH: ')
 		print(cmd)
 
