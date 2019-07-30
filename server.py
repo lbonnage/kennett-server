@@ -35,16 +35,20 @@ def init_server_commands(instance_ip, server):
 
 		# Execute a Unix command via SSH after connecting to the instance
 
-		cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
+		server_start_cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
 
-		stdin, stdout, stderr = ssh_client.exec_command('cd ' + jar_path)
-		stdin, stdout, stderr = ssh_client.exec_command(cmd)
-		stdin, stdout, stderr = ssh_client.exec_command('cd ../..')
+		cmd = 'cd ' + jar_path + '; ' + server_start_cmd + '; cd ../..'
+
+		print ('[Server] cmd: ' + cmd)
+
+		ssh_client.chdir(jar_path)
+		stdin, stdout, stderr = ssh_client.exec_command(server_start_cmd)
+		ssh_client.chdir('../..')
 
 		print("[Server] Command executed at path: " + jar_path)
-		# print('[Server] stdin: ' + stdin)
-		# print('[Server] stdout: ' + stdout)
-		# print('[Server] stderr: ' + stderr)
+		print('[Server] stdin: ' + stdin)
+		print('[Server] stdout: ' + stdout)
+		print('[Server] stderr: ' + stderr)
 
 		# Close the SSH connection once the job is done
 		ssh_client.close()
