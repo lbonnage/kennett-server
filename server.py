@@ -37,13 +37,13 @@ def init_server_commands(instance_ip, server):
 
 		server_start_cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
 
-		cmd = 'cd ' + jar_path + '; ' + server_start_cmd + '; cd ../..'
+		cmd = 'cd ' + jar_path + '; ' + server_start_cmd
 
 		print ('[Server] cmd: ' + cmd)
 
-		ssh_client.chdir(jar_path)
-		stdin, stdout, stderr = ssh_client.exec_command(server_start_cmd)
-		ssh_client.chdir('../..')
+		# ssh_client.chdir(jar_path)
+		stdin, stdout, stderr = ssh_client.exec_command(cmd)
+		# ssh_client.chdir('../..')
 
 		print("[Server] Command executed at path: " + jar_path)
 		print('[Server] stdin: ' + stdin)
