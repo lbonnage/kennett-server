@@ -36,7 +36,7 @@ def init_server_commands(instance_ip, server):
 		# Execute a Unix command via SSH after connecting to the instance
 
 		# Server path rewrite command
-		path_cmd = "echo " + jar_path + " > serverpath.txt";
+		path_cmd = "sudo echo " + jar_path + " > serverpath.txt";
 
 		ssh_client.exec_command(path_cmd);
 
