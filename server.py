@@ -42,9 +42,9 @@ def init_server_commands(instance_ip, server):
 
 		ssh_client.exec_command(path_cmd);
 
-		server_start_cmd = "&& screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
+		server_start_cmd = " && screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
 
-		cmd = 'cd /home/ubuntu' + jar_path + '&& ' + server_start_cmd
+		cmd = 'cd /home/ubuntu' + jar_path + server_start_cmd
 
 		print ('[Server] cmd: ' + cmd)
 
@@ -53,9 +53,9 @@ def init_server_commands(instance_ip, server):
 		# ssh_client.chdir('../..')
 
 		print("[Server] Command executed at path: " + jar_path)
-		print('[Server] stdin: ' + stdin)
-		print('[Server] stdout: ' + stdout)
-		print('[Server] stderr: ' + stderr)
+		# print('[Server] stdin: ' + stdin)
+		# print('[Server] stdout: ' + stdout)
+		# print('[Server] stderr: ' + stderr)
 
 		# Close the SSH connection once the job is done
 		ssh_client.close()
