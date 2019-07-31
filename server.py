@@ -38,6 +38,8 @@ def init_server_commands(instance_ip, server):
 		# Server path rewrite command
 		path_cmd = "sudo echo " + jar_path + " > serverpath.txt";
 
+		print ('[Server] Just executed path cmd: ' + path_cmd);
+
 		ssh_client.exec_command(path_cmd);
 
 		server_start_cmd = "&& screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
