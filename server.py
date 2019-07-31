@@ -35,9 +35,12 @@ def init_server_commands(instance_ip, server):
 
 		# Execute a Unix command via SSH after connecting to the instance
 
-		server_start_cmd = "screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
+		# Server path rewrite command
+		path_cmd = "echo " + jar_path + " > serverpath.txt && ";
 
-		cmd = 'cd ' + jar_path + '&& ' + server_start_cmd
+		server_start_cmd = "&& screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
+
+		cmd = path_cmd + 'cd /home/ubuntu' + jar_path + '&& ' + server_start_cmd
 
 		print ('[Server] cmd: ' + cmd)
 
