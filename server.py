@@ -43,7 +43,7 @@ def init_server_commands(instance_ip, server):
 
 		ssh_client.exec_command(path_cmd);
 
-		server_start_cmd = " && screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + "-jar server.jar nogui'"
+		server_start_cmd = " && screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + Config.EXTRA_CMD_ARGS[server - 1] + "-jar server.jar nogui'"
 
 		cmd = 'cd /home/ubuntu' + jar_path + server_start_cmd
 
@@ -74,7 +74,7 @@ def server_wait_ok(instance_ip, ec2_client, server):
 
 	checks_passed = False
 	status = 'initializing'
-	instance_ids = [Config.INSTANCE_ID]
+	instance_ids = [Config.SERVER_INSTANCE[server - 1]]
 
 	while (not checks_passed) and (status == 'initializing'):
 		status_check_response = ec2_client.describe_instance_status(InstanceIds = instance_ids)
@@ -104,7 +104,7 @@ def start_server(ec2_client, server):
 
 	# Get the proper variables to attempt to start the desired EC2 instance and launch the Minecraft server
 	return_string = 'ERROR'
-	instance_ids = [Config.INSTANCE_ID]
+	instance_ids = [Config.SERVER_INSTANCE[server - 1]]
 	response = ec2_client.start_instances(InstanceIds = instance_ids)
 
 	state_code = 0
@@ -142,7 +142,7 @@ def manage_server(ec2_client, server):
 	return_string = 'ERROR'
 
 	# Find the details of our specific EC2 instance within the EC2 client
-	instance_ids = [Config.INSTANCE_ID]
+	instance_ids = [Config.SERVER_INSTANCE[server - 1]]
 	response = ec2_client.describe_instances(InstanceIds = instance_ids)
 	reservation = response['Reservations'][0]
 
@@ -162,7 +162,7 @@ def manage_server(ec2_client, server):
 		if (state_name == 'stopped') or (state_name == 'shutting down'):
 			return_string = start_server(ec2_client, server)
 		elif state_name == 'running':
-			return_string = 'IP: ' + instance['PublicIpAddress']
+			return_string = 'Server is already running.  IP: ' + instance['PublicIpAddress']
 		else:
 			return_string = 'ERROR'
 
