@@ -52,10 +52,10 @@ def get_month_costs():
 
         pprint.pprint(results)
 
-        finaldict = {}
+        finaldict = {"MONTH": "COST"}
         for monthData in results:
             month = monthData['TimePeriod']['Start'][:-3]
-            total = monthData['Groups'][0]['Metrics']['UnblendedCost']['Amount']
+            total = '$' + monthData['Groups'][0]['Metrics']['UnblendedCost']['Amount'][:4]
 
             finaldict[month] = total
 
