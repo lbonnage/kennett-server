@@ -174,7 +174,7 @@ def manage_server(ec2_client, server):
 ##
 @app.route("/")
 def load_index():
-	return render_template('index.html')
+	return render_template('index.html', monthCosts=get_month_costs())
 
 
 ##
