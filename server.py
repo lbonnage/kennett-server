@@ -43,7 +43,7 @@ def init_server_commands(instance_ip, server):
 
 		ssh_client.exec_command(path_cmd);
 
-		server_start_cmd = " && screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION + Config.EXTRA_CMD_ARGS[server - 1] + "-jar server.jar nogui'"
+		server_start_cmd = " && screen -dmS minecraft bash -c 'sudo java " + Config.MEMORY_ALLOCATION[server - 1] + Config.EXTRA_CMD_ARGS[server - 1] + "-jar server.jar nogui'"
 
 		cmd = 'cd /home/ubuntu' + jar_path + server_start_cmd
 
