@@ -210,7 +210,7 @@ def init_server():
 			region_name=Config.EC2_REGION
 		)		
 
-		ip_address = manage_server(ec2_client, inputted_server)
+		ip_address = manage_server(ec2_client, int(inputted_server))
 		message = '[Server] Successfully started EC2 server with IP: ' + ip_address
 
 	print(message)
