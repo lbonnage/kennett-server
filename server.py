@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 from multiprocessing import Process
 from configuration import Config
-from cost import Cost
+from cost import get_month_costs
 import json
 import boto3
 import time
@@ -214,4 +214,4 @@ def init_server():
 		message = '[Server] Successfully started EC2 server with IP: ' + ip_address
 
 	print(message)
-	return render_template('index.html', ipMessage=ip_address, monthCosts=Cost.get_month_costs())
+	return render_template('index.html', ipMessage=ip_address, monthCosts=get_month_costs())
