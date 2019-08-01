@@ -24,6 +24,15 @@ $(function () {
             		}
             		)
                 break;
+			case "3":
+            	$("#serverText").html(
+            		function() {
+            			var forgelink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/sevtech-ages/files/2744522\">Modpack</a>";
+            			return "SevTech Ages 3.1.2 modpack.  Runs on Minecraft 1.12.2.  If installing through Twitch launcher (easiest method) disregard following. Requires the following: " +
+            			forgelink;
+            		}
+            		)
+                break;
         }
     });
 });
