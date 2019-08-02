@@ -214,4 +214,12 @@ def init_server():
 		message = '[Server] Successfully started EC2 server with IP: ' + ip_address
 
 	print(message)
+
+    cost = {}
+    try {
+        cost = get_month_costs()
+    } catch {
+        print('[Server] Exception while getting costs')
+    }
+
 	return render_template('index.html', ipMessage=ip_address, monthCosts=get_month_costs())
