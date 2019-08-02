@@ -216,10 +216,12 @@ def init_server():
 	print(message)
 
     cost = {}
-    try {
+
+    try:
         cost = get_month_costs()
-    } catch {
-        print('[Server] Exception while getting costs')
-    }
+    except IndexError as e:
+        print("[Server] Failed to get month costs")
+        cost = {}
+
 
 	return render_template('index.html', ipMessage=ip_address, monthCosts=get_month_costs())
