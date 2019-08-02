@@ -29,8 +29,8 @@ $(function () {
             		function() {
             			var forgelink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/sevtech-ages/files/2744522\">Modpack</a>"
 						var twitchlink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/sevtech-ages/download/2744522?client=y\">Twitch launcher download</a>"
-            			return "SevTech Ages 3.1.2 modpack.  Runs on Minecraft 1.12.2.  If installing through Twitch launcher (easiest method) disregard following. Requires the following: " +
-            			forgelink + " / " +
+            			return "SevTech Ages 3.1.2 modpack.  Runs on Minecraft 1.12.2. Requires the following: " +
+            			forgelink + " or " +
 						twitchlink;
             		}
             		)
