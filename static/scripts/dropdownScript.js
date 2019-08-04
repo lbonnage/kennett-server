@@ -32,6 +32,7 @@ $(function () {
             			var forgelink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/sevtech-ages/files/2744522\">Modpack</a>"
             			return "SevTech Ages 3.1.2 modpack.  Runs on Minecraft 1.12.2.<br>" +
 							"Basically a progression modpack featuring a ton of mods that you have to unlock by 'progressing' through the ages, working your way from primitive to eventually futuristic.<br>" +
+							"Best move would be to play this before playing any other large modpacks, it introduces you slowly to most of the major mods.<br>" +
 							"If installing through Twitch launcher (easiest method), make sure to click 'Versions' and download '3.1.2', as the default may be wrong for some, and disregard the following.<br>" +
 							"Requires the following: " + forgelink;
             		}
@@ -44,6 +45,17 @@ $(function () {
             			return "Ragnamod V.  Runs on Minecraft 1.12.2.<br>" +
 							"Tbh idk what this is, it's mainly used by French people, but its in English and the mod list looks amazing and its super popular.<br>" +
 							"If installing through Twitch launcher (easiest method), disregard the following.<br>" +
+							"Requires the following: " + forgelink;
+            		}
+            		)
+                break;
+			case "5":
+            	$("#serverText").html(
+            		function() {
+            			var forgelink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/all-the-mods-3-remix/download/2734233\">Modpack</a>"
+            			return "All the Mods - Remix version 1.3.2.  Runs on Minecraft 1.12.2.<br>" +
+							"Large pack with tons of mods.  Includes MineColonies for making your own medieval city and defending it (really in-depth, customization, etc.).<br>" +
+							"If installing through Twitch launcher (easiest method), make sure to click 'Versions' and download '1.3.2', and disregard the following.<br>" +
 							"Requires the following: " + forgelink;
             		}
             		)
