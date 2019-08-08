@@ -60,6 +60,17 @@ $(function () {
             		}
             		)
                 break;
+			case "6":
+            	$("#serverText").html(
+            		function() {
+            			var forgelink = "<a href=\"https://www.curseforge.com/minecraft/modpacks/enigmatica2/files/2752163\">Modpack</a>"
+            			return "Enigmatica 2 <i>(Version 1.70)</i>.  Runs on Minecraft 1.12.2.<br>" +
+							"I think this is just a better version of ATM3Remix<br>" +
+							"If installing through Twitch launcher (easiest method), make sure to click 'Versions' and download '1.70', and disregard the following.<br>" +
+							"<strong>Requires the following: </strong>" + forgelink;
+            		}
+            		)
+                break;
         }
     });
 });
