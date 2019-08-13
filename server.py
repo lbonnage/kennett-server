@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 from multiprocessing import Process
 from configuration import Config
-from cost import get_month_costs
+# from cost import get_month_costs
 import json
 import boto3
 import time
@@ -174,7 +174,7 @@ def manage_server(ec2_client, server):
 ##
 @app.route("/")
 def load_index():
-	return render_template('index.html', monthCosts=get_month_costs())
+	return render_template('index.html', monthCosts={})
 
 
 ##
@@ -217,11 +217,11 @@ def init_server():
 
 
 	cost = {}
-
-	try:
-		cost = get_month_costs()
-	except IndexError as e:
-		print("[Server] Failed to get month costs")
-		cost = {}
+	#
+	# try:
+	# 	cost = get_month_costs()
+	# except IndexError as e:
+	# 	print("[Server] Failed to get month costs")
+	# 	cost = {}
 
 	return render_template('index.html', ipMessage=ip_address, monthCosts=cost)
